@@ -12,23 +12,29 @@ async def on_ready():
     print('------')
 
 
-def findrole(targetrole):
+def findrole(targetrole, roles):
     roleid = None
-    for role in message.server.roles:
-        if targetrole == role.name:
+    for role in roles:
+        if targetrole.lower() == role.name.lower():
             roleid = role
     return roleid
 
 
 async def addrole(message, targetrole):
-    roleid = findrole(targetrole)
-	if roleid == None:
-		await client.send_message(message.channel, "I can't find that role")
-	else:
-	    await client.add_roles(message.author, roleid)
-	    await client.send_message(message.channel, "Added!")
-	
-
+    roleid = findrole(targetrole, message.server.roles)
+    if roleid == None:
+        await client.send_message(message.channel, "I can't find that role")
+    else:
+        await client.add_roles(message.author, roleid)
+        await client.send_message(message.channel, "Added!")
+    
+async def remrole(message, targetrole):
+    roleid = findrole(targetrole, message.server.roles)
+    if roleid == None:
+        await client.send_message(message.channel, "I can't find that role")
+    else:
+        await client.remove_roles(message.author, roleid)
+        await client.send_message(message.channel, "Removed!")
 
 
 @client.event
@@ -36,9 +42,12 @@ async def on_message(message):
     tokens = message.content.split(" ")
     command = tokens[0]
     if message.channel.name == "botspam":
-		if command.lower == "!iam":
-		  await addrole(message, tokens[1])
-	##print("CHANNEL: {}  MESSAGE: {}".format(message.channel, message.content))
+        if command.lower() == "!iam":
+            await addrole(message, tokens[1])
+        if command.lower() == "!iamnot":
+            await remrole(message, tokens[1])
+
+    ##print("CHANNEL: {}  MESSAGE: {}".format(message.channel, message.content))
 
 
 ## Keep the Token in a seperate file for sekrits
