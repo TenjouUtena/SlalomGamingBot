@@ -33,7 +33,7 @@ public class OnBotMessage extends ListenerAdapter {
     {
         DiscordMessage mess = new DiscordMessage(event.getMessage());
         for(PluginInterface p : plugins)
-            if(p.isProcessMessage(mess))
+            if(p.wantsMessage(mess))
                 p.processMessage(mess);
 
      /*

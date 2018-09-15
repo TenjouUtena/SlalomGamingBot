@@ -16,11 +16,18 @@ buildscript {
 
 allprojects {
 
-
+    dependencies {
+        apply plugin: 'java'
+        compile 'net.dv8tion:JDA:3.7.1_422'
+    }
     repositories {
         flatDir {
             dirs "$rootProject.projectDir/pluginjars"
         }
         jcenter()
     }
+}
+
+clean {
+    delete fileTree(dir: "$rootDir/pluginjars", include: ['*.jar'])
 }
