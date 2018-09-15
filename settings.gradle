@@ -11,3 +11,5 @@ rootProject.name = 'SlalomGamingBot'
 
 include 'BotInterface'
 include 'SlalomBotmk1'
+include 'TestJavaPlugin'
+

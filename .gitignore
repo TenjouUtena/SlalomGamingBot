@@ -1,7 +1,8 @@
 token
-target
 .idea
 *.iml
-gardlew*
+gradlew*
 gradle
 .gradle
+/BotInterface/build
+/SlalomBotmk1/build
