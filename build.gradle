@@ -4,10 +4,23 @@
  * This is a general purpose Gradle build.
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds/
  */
+buildscript {
+    repositories {
+        jcenter()
+    }
+    // buildscript dependencies can be used for build time plugins.
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:2.0.4"
+    }
+}
+
 allprojects {
 
 
     repositories {
+        flatDir {
+            dirs "$rootProject.projectDir/pluginjars"
+        }
         jcenter()
     }
 }

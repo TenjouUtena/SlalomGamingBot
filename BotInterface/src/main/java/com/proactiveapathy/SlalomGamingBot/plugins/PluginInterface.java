@@ -5,6 +5,6 @@ import com.proactiveapathy.SlalomGamingBot.DiscordMessage;
 
 public interface PluginInterface {
     void getBotInstance(BotInterface theBot);
-    Boolean isProcessMessage();
+    Boolean isProcessMessage(DiscordMessage mess);
     void processMessage(DiscordMessage mess);
 }

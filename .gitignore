@@ -4,5 +4,5 @@ token
 gradlew*
 gradle
 .gradle
-/BotInterface/build
-/SlalomBotmk1/build
+/pluginjars/*.jar
+build

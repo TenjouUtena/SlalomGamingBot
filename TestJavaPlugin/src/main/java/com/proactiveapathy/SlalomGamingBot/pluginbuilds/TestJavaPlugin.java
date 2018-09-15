@@ -12,12 +12,13 @@ public class TestJavaPlugin implements PluginInterface {
     }
 
     @Override
-    public Boolean isProcessMessage() {
-        return true;
+    public Boolean isProcessMessage(DiscordMessage mess) {
+        return mess.getMessageString().toLowerCase().startsWith("!test");
     }
 
     @Override
     public void processMessage(DiscordMessage mess) {
-        System.out.println("TestMessageFromJava: " + mess.getMessage());
+        System.out.println("TestMessageFromJava: " + mess.getMessageString());
+        mess.getMessageChannel().sendMessage("Test from Java!").queue();
     }
 }

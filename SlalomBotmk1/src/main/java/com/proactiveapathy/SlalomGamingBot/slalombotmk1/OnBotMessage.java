@@ -19,10 +19,11 @@ public class OnBotMessage extends ListenerAdapter {
     }
 
     private void resyncPlugins() throws InstantiationException, IllegalAccessException {
-        Reflections reflections = new Reflections("");
+        Reflections reflections = new Reflections("com.proactiveapathy.SlalomGamingBot");
         plugins = new HashSet<PluginInterface>();
 
         for(Class<? extends PluginInterface> cls : reflections.getSubTypesOf(PluginInterface.class)) {
+            System.out.println("Found: " + cls.getName());
             plugins.add(cls.newInstance());
         }
     }
@@ -30,12 +31,12 @@ public class OnBotMessage extends ListenerAdapter {
 
     public void onMessageReceived(MessageReceivedEvent event)
     {
+        DiscordMessage mess = new DiscordMessage(event.getMessage());
+        for(PluginInterface p : plugins)
+            if(p.isProcessMessage(mess))
+                p.processMessage(mess);
 
-        for(PluginInterface p : plugins) {
-            p.processMessage( new DiscordMessage(event.getMessage().getContentDisplay()));
-
-        }
-
+     /*
         if (event.isFromType(ChannelType.PRIVATE))
         {
             System.out.printf("[PM] %s: %s\n", event.getAuthor().getName(),
@@ -47,5 +48,7 @@ public class OnBotMessage extends ListenerAdapter {
                     event.getTextChannel().getName(), event.getMember().getEffectiveName(),
                     event.getMessage().getContentDisplay());
         }
+    */
     }
+
 }
