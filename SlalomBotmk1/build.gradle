@@ -1,0 +1,12 @@
+
+plugins {
+    id 'java'
+    id 'application'
+}
+dependencies {
+    compile project(':BotInterface')
+    compile 'org.reflections:reflections:0.9.11'
+    compile 'net.dv8tion:JDA:3.7.1_422'
+}
+
+mainClassName = 'com.proactiveapathy.SlalomGamingBot.slalombotmk1.Robot'

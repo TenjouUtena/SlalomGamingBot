@@ -1,5 +1,4 @@
-package com.proactiveapathy.SlalomGamingBot.basebot;
-
+package com.proactiveapathy.SlalomGamingBot.slalombotmk1;
 
 import com.proactiveapathy.SlalomGamingBot.DiscordMessage;
 import com.proactiveapathy.SlalomGamingBot.plugins.PluginInterface;
