@@ -9,7 +9,11 @@ dependencies {
     compile fileTree(dir: "$rootDir/pluginjars", include: ['*.jar'])
     compile 'org.reflections:reflections:0.9.11'
     compile 'net.dv8tion:JDA:3.7.1_422'
+    compile 'org.ini4j:ini4j:0.5.4'
 
 }
 
+run {
+
+}
 mainClassName = 'com.proactiveapathy.SlalomGamingBot.slalombotmk1.Robot'

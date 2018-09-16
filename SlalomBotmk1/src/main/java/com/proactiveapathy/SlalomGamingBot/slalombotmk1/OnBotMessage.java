@@ -2,7 +2,6 @@ package com.proactiveapathy.SlalomGamingBot.slalombotmk1;
 
 import com.proactiveapathy.SlalomGamingBot.DiscordMessage;
 import com.proactiveapathy.SlalomGamingBot.plugins.PluginInterface;
-import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.reflections.Reflections;
@@ -14,19 +13,10 @@ public class OnBotMessage extends ListenerAdapter {
 
     private Set<PluginInterface> plugins;
 
-    public OnBotMessage() throws Exception {
-        resyncPlugins();
+    public OnBotMessage(Set<PluginInterface> p) throws Exception {
+        plugins = p;
     }
 
-    private void resyncPlugins() throws InstantiationException, IllegalAccessException {
-        Reflections reflections = new Reflections("com.proactiveapathy.SlalomGamingBot");
-        plugins = new HashSet<PluginInterface>();
-
-        for(Class<? extends PluginInterface> cls : reflections.getSubTypesOf(PluginInterface.class)) {
-            System.out.println("Found: " + cls.getName());
-            plugins.add(cls.newInstance());
-        }
-    }
 
 
     public void onMessageReceived(MessageReceivedEvent event)
@@ -36,19 +26,6 @@ public class OnBotMessage extends ListenerAdapter {
             if(p.wantsMessage(mess))
                 p.processMessage(mess);
 
-     /*
-        if (event.isFromType(ChannelType.PRIVATE))
-        {
-            System.out.printf("[PM] %s: %s\n", event.getAuthor().getName(),
-                    event.getMessage().getContentDisplay());
-        }
-        else
-        {
-            System.out.printf("[%s][%s] %s: %s\n", event.getGuild().getName(),
-                    event.getTextChannel().getName(), event.getMember().getEffectiveName(),
-                    event.getMessage().getContentDisplay());
-        }
-    */
     }
 
 }

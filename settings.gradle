@@ -10,7 +10,11 @@
 rootProject.name = 'SlalomGamingBot'
 
 include 'BotInterface'
-include 'TestJavaPlugin'
-include 'TestClojurePlugin'
+//include 'TestJavaPlugin'
+//include 'TestClojurePlugin'
+
+include 'AutoRole'
+
 
 include 'SlalomBotmk1'
+

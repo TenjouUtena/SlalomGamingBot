@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id "gradle-clojure.clojure" version "0.4.0"
+    id 'com.github.johnrengelman.shadow'
+}
+
+version 'unspecified'
+
+sourceCompatibility = 1.9
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+
+    compile project(':BotInterface')
+    // whatever version of clojure you prefer (versions before 1.8.0 may not be compatible)
+    implementation 'org.clojure:clojure:1.9.0'
+    implementation 'net.dv8tion:JDA:3.7.1_422'
+    // and any other dependencies you want on the compile classpath
+    // implementation 'group:artifact:version'
+
+    // needed for test integration
+    testImplementation 'junit:junit:4.12'
+    // and any other test-specific dependencies
+    // testImplementation 'group:artifact:version'
+
+    // dependencies for REPL use only
+    devImplementation 'org.clojure:tools.namespace:0.3.0-alpha4'
+
+
+}
+
+clojure {
+    builds {
+        main {
+            aotAll()
+        }
+    }
+}
+
+tasks.withType(Jar) {
+    destinationDir = file("$rootDir/pluginjars")
+}

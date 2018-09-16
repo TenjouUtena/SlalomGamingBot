@@ -7,3 +7,5 @@ gradle
 /pluginjars/*.jar
 build
 /pluginjars
+/TestClojurePlugin/lib
+/SlalomBotmk1/bot.ini
