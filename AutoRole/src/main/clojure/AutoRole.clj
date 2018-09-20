@@ -28,6 +28,12 @@
         )
       )
 
+(defn -wantsEvent [_ _]
+  false)
+
+(defn -processEvent [_ _]
+  nil)
+
 (defn findRolebyName [guild role]
   (first (filter #(= role (s/lower-case (.getName %))) (.getRoles guild))))
 

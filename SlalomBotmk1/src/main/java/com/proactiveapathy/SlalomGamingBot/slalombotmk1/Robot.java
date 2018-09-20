@@ -51,7 +51,7 @@ public class Robot {
         }
 
 
-        jda.addEventListener(new OnBotMessage(plugins));
+        jda.addEventListener(new BotEventHandler(plugins));
 
 
     }

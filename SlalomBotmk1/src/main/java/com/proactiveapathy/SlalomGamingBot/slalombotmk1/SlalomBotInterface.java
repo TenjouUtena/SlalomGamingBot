@@ -5,6 +5,8 @@ import org.ini4j.Ini;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SlalomBotInterface implements BotInterface {
 
@@ -28,5 +30,10 @@ public class SlalomBotInterface implements BotInterface {
     @Override
     public String getIni(String section, String key) {
         return ini.get(section, key);
+    }
+
+    @Override
+    public Map<String, String> getIniMap(String section) {
+        return new HashMap<String, String>(ini.get(section));
     }
 }
